@@ -1,0 +1,83 @@
+package com.example.controller;
+
+import com.example.entity.Candidates;
+import com.example.entity.JobPost;
+import com.example.service.CandidatesServices;
+import com.example.service.JobPostServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/jobposts")
+public class JobPostController {
+
+    @Autowired
+    private JobPostServices jobPostServices;
+
+    @Autowired
+    private CandidatesServices candidatesServices;
+
+    // Creating a new job post
+    @PostMapping
+    public ResponseEntity<JobPost> createJobPost(@RequestBody JobPost jobPost) {
+        JobPost createdJobPost = jobPostServices.createJobPost(jobPost);
+        return new ResponseEntity<>(createdJobPost, HttpStatus.CREATED);
+    }
+
+    // Getting job posts
+    @GetMapping
+    public ResponseEntity<List<JobPost>> getAllJobPosts() {
+        List<JobPost> jobPosts = jobPostServices.getAllJobPosts();
+        return new ResponseEntity<>(jobPosts, HttpStatus.OK);
+    }
+
+    // Get a job post by its ID
+    @GetMapping("/{id}")
+    public ResponseEntity<JobPost> getJobPostById(@PathVariable Long id) {
+        try{
+        Optional<JobPost> jobPost = jobPostServices.getJobPostById(id);
+            if(jobPost.isPresent())
+            {
+                return new ResponseEntity<>(jobPost, HttpStatus.OK);
+            }
+            else
+            {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        catch{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // Apply a candidate to a job post (assign candidate)
+    @PostMapping("/{jobPostId}/apply/{candidateId}")
+    public ResponseEntity<Candidates> applyForJob(@PathVariable Long jobPostId, @PathVariable Long candidateId) {
+        try {
+            Candidates updatedCandidate = candidatesServices.applyForJobPost(candidateId, jobPostId);
+            return new ResponseEntity<>(updatedCandidate, HttpStatus.OK);
+        } catch {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Get all candidates applied to a job post
+    @GetMapping("/{jobPostId}/candidates")
+    public ResponseEntity<List<Candidates>> getCandidatesByJobPostId(@PathVariable Long jobPostId) {
+        List<Candidates> candidates = candidatesServices.getCandidatesByJobPostId(jobPostId);
+        return new ResponseEntity<>(candidates, HttpStatus.OK);
+    }
+
+    // Get job posts by job title (optional query)
+    @GetMapping("/search")
+    public ResponseEntity<List<JobPost>> getJobPostsByTitle(@RequestParam String jobTitle) {
+        List<JobPost> jobPosts = jobPostServices.getJobPostsByJobTitle(jobTitle);
+        return new ResponseEntity<>(jobPosts, HttpStatus.OK);
+    }
+
+}

@@ -1,0 +1,94 @@
+package com.example.entity;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class JobPost{
+    @Id
+    @GeneratedValue(GenerationType.IDENTITY)
+    private Long id;
+    private String jobTitle;
+    private String description;
+    private String location;
+    private String company;
+    private String skillsRequired;
+
+
+    @ManyToOne
+    @JoinColumn(name="candidate_id")
+    private Candidates candidate;
+
+    // Getter for id
+    public Long getId() {
+        return id;
+    }
+
+    // Setter for id
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    // Getter for jobTitle
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    // Setter for jobTitle
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    // Getter for description
+    public String getDescription() {
+        return description;
+    }
+
+    // Setter for description
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    // Getter for location
+    public String getLocation() {
+        return location;
+    }
+
+    // Setter for location
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    // Getter for company
+    public String getCompany() {
+        return company;
+    }
+
+    // Setter for company
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    // Getter for skillsRequired
+    public String getSkillsRequired() {
+        return skillsRequired;
+    }
+
+    // Setter for skillsRequired
+    public void setSkillsRequired(String skillsRequired) {
+        this.skillsRequired = skillsRequired;
+    }
+    @Override
+    public String toString() {
+        return "Job{" +
+               "id=" + id +
+               ", jobTitle='" + jobTitle + '\'' +
+               ", description='" + description + '\'' +
+               ", location='" + location + '\'' +
+               ", company='" + company + '\'' +
+               ", skillsRequired='" + skillsRequired + '\'' +
+               '}';
+
+    }
+}

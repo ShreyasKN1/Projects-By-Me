@@ -1,0 +1,57 @@
+package com.example.service;
+
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+
+
+
+@Service
+public class CandidatesServices {
+
+   @Autowired
+    private CandidateRepository candidateRepository; 
+
+    @Autowired
+    private JobPostRepository jobPostRepository; 
+
+    // Create a new candidate
+    public Candidates createCandidate(Candidates candidate) {
+        return candidateRepository.save(candidate);
+    }
+
+    // Assigning a candidate to a job post
+    public Candidates applyForJobPost(Long candidateId, Long jobPostId) {
+        Optional<JobPost> jobPostOptional = jobPostRepository.findById(jobPostId);
+        Optional<Candidates> candidateOptional = candidateRepository.findById(candidateId);
+
+        if (jobPostOptional.isPresent() && candidateOptional.isPresent()) {
+            JobPost jobPost = jobPostOptional.get();
+            Candidates candidate = candidateOptional.get();
+            jobPost.setCandidate(candidate); 
+            jobPostRepository.save(jobPost); 
+            return candidate;
+        } 
+        else
+         {
+            throw new IllegalArgumentException("Candidate or JobPost not found");
+        }
+    }
+
+    // Get candidates by JobPost ID
+    public List<Candidates> getCandidatesByJobPostId(Long jobPostId) {
+        return candidateRepository.findByJobPostId(jobPostId);
+    }
+
+    // Get candidate by email
+    public Candidates getCandidateByEmail(String email) {
+        return candidateRepository.findByEmail(email);
+    }
+}
+

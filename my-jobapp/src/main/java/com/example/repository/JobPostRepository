@@ -1,0 +1,8 @@
+package com.example.repository;
+
+import com.example.entity.JobPost;
+@Repository
+public interface JobPostRepository extends JPARepository<JobPost, Long>
+{
+
+} 

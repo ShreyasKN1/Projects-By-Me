@@ -1,0 +1,12 @@
+package com.example.repository;
+
+import org.springframework.stereotype.Repository;
+
+import com.example.entity.Candidates;
+
+@Repository
+public interface CandidateRepository extends JPARepository<Candidates, Long> {
+
+    Candidates findByEmail(String email); 
+    List<Candidates> findByJobPostId(Long jobPostId); 
+}

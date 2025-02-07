@@ -1,0 +1,47 @@
+CREATE TABLE users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL
+);
+
+-- Create Categories Table
+CREATE TABLE categories (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+-- Create Posts Table
+CREATE TABLE posts (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    content TEXT NOT NULL,
+    author_id BIGINT,
+    category_id BIGINT,
+    FOREIGN KEY (author_id) REFERENCES users(id),
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+-- Create Comments Table
+CREATE TABLE comments (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    content TEXT NOT NULL,
+    post_id BIGINT,
+    FOREIGN KEY (post_id) REFERENCES posts(id)
+);
+
+-- Insert Sample Data into Users Table
+INSERT INTO users (username, email, password) VALUES ('john_doe', 'john.doe@example.com', 'password123');
+INSERT INTO users (username, email, password) VALUES ('jane_smith', 'jane.smith@example.com', 'password456');
+
+-- Insert Sample Data into Categories Table
+INSERT INTO categories (name) VALUES ('Technology');
+INSERT INTO categories (name) VALUES ('Lifestyle');
+
+-- Insert Sample Data into Posts Table
+INSERT INTO posts (title, content, author_id, category_id) VALUES ('The Future of Tech', 'This post discusses upcoming trends in technology...', 1, 1);
+INSERT INTO posts (title, content, author_id, category_id) VALUES ('Healthy Living Tips', 'Tips for a healthier lifestyle...', 2, 2);
+
+-- Insert Sample Data into Comments Table
+INSERT INTO comments (content, post_id) VALUES ('Great insights on technology!', 1);
+INSERT INTO comments (content, post_id) VALUES ('Very helpful tips, thanks!', 2);

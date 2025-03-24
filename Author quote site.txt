@@ -1,0 +1,76 @@
+App.js
+import React,{useState,useEffect} from 'react'
+import './.Design.css'
+
+function App()
+{
+    const quotes=[
+            { text: "The greatest glory in living lies not in never falling, but in rising every time we fall.", author: "Nelson Mandela" },
+            { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+            { text: "Life is what happens when you're busy making other plans.", author: "John Lennon" },
+    ];
+
+    const [quote,setQuote]=useState({text: ' ', author: ' ' })
+
+
+    useEffect=(()=>{
+        getRandomQuote();
+
+    },[])
+function getRandomQuote(){
+    const randomIndex=Math.floor(Math.random()*quote.length());
+    setQuote(quotes[randomIndex])
+}
+
+
+return(
+    <div id="quote-box">
+        <p id="text">{quote.text}</p>
+        <p id="author">{quote.author}</p>
+        <button id="new-quote" onClick={getRandomQuote}>New Quote</button>
+        <a    id="tweet-quote"
+             href={`https://twitter.com/intent/tweet?text="${quote.text}" - ${quote.author}`}
+            target="_blank"
+            rel="noopener noreferrer">
+            Tweet Quote
+        </a>
+    </div>
+);
+
+
+}
+
+export default App;
+
+Design.css
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  #quote-box {
+    text-align: center;
+    border: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  a {
+    display: block;
+    margin-top: 10px;
+    color: #1DA1F2;
+    text-decoration: none;
+  }
+  
+

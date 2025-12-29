@@ -1,0 +1,64 @@
+Document of How to Perform test or working of application:
+
+
+Step 1: From A
+Request:
+
+json
+{
+  "currentNode": "A",
+  "destinationNode": "E",
+  "nextNodes": ["B","C","D"]
+}
+Expected response (example):
+
+example putput be like:
+
+json
+{
+  "nextNode": "B",
+  "score": 0.12,
+  "reasoning": "Exploit: chose B from A with Q(A,B)=0.12"
+}
+
+Next request payload should set currentNode to B.
+
+Step 2:change node to B 
+ From B
+Request:
+
+json
+{
+  "currentNode": "B",
+  "destinationNode": "E",
+  "nextNodes": ["D","C"]  
+}
+Expected response (example):
+
+json
+{
+  "nextNode": "D",
+  "score": 0.45,
+  "reasoning": "Exploit: chose D from B with Q(B,D)=0.45"
+}
+Next request payload should set currentNode to D.
+
+Step 3: From D
+Request:
+
+json
+{
+  "currentNode": "D",
+  "destinationNode": "E",
+  "nextNodes": ["E"]
+}
+Expected response (example):
+
+json
+{
+  "nextNode": "E",
+  "score": 3.10,
+  "reasoning": "Exploit: chose E from D with Q(D,E)=3.10 (destination reward)"
+}
+You’ve reached the destination. Stop here.
+Check redis for keys* and hgetAll A, B, C, D and E for their qvalues between them.

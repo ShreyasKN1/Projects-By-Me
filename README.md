@@ -1,53 +1,17 @@
-💻 Projects By Me — Shreyas Kumar N
-Welcome! I'm Shreyas, an aspiring Java Backend Developer with nearly 3 years of experience and a strong focus on building practical, scalable, and real-world applications. This repository is a collection of personal and learning projects that reflect my continuous effort to grow as a developer.
+I am Shreyas Kumar, a Java Backend Developer + ReactJS dev with close to three years of experience building scalable, production-grade systems. My work is centered on backend architecture, API design, performance, and reliability. I focus on building systems that solve real business problems, not just academic demos.
 
-🚀 What You'll Find Here
-This repo showcases a wide range of backend-focused projects, often built using:
+My current area of specialization is bringing Generative AI and Agentic AI into Java applications. I work on integrating LLMs with Spring Boot services, building AI-driven workflows, and designing agent-style backends capable of reasoning, planning, and executing tasks across services. This includes prompt orchestration, tool/function calling, retrieval-augmented generation, vector stores, and event-driven AI pipelines.
 
-Java, Spring Boot, Spring MVC, Spring Security
+I actively explore and implement:
 
-Microservices architecture
+->GenAI integration with Java and Spring Boot
 
-RESTful APIs with JWT-based authentication
+->Agentic AI systems that can take actions, not just generate text
 
-MySQL, MongoDB for data persistence
+->AI-assisted microservices and automation pipelines
 
-ReactJS for full-stack exposure
+->Secure API gateways and RBAC around AI features
 
-Real-world features like:
+My engineering approach is practical and systems-focused. I care about clean architecture, testability, observability, and designing services that can evolve. I constantly iterate on ideas, refine implementations, and convert concepts into working, deployable systems.
 
-Role-based access control (RBAC)
-
-Email notifications
-
-Task scheduling
-
-Caching
-
-Seat availability systems
-
-PNR generation
-
-🔧 Notable Projects
-Job Portal Microservices App – Multiple services with role-based access and task-based features.
-
-Tatkal Ticket Booking System – Admin and booking services with full backend logic including seat check, cancellations, and PNR generation.
-
-Productivity Insights App (Spring AI) – AI-assisted task manager with overdue checks, reminders, and motivational tips.
-
-Task Approval Workflow System – Multi-user task approval system with MySQL, email triggers, and REST APIs.
-
-Stock CSV Ingestion Tool – Built with Spring Batch and WebFlux to process real-time IoT CSV data efficiently.
-
-🧠 Learning In Public
-I’ve taken a hands-on approach to learn and apply:
-
-Spring ecosystem best practices
-
-Design patterns
-
-Clean code architecture
-
-Problem solving via LeetCode and real-world patterns
-
-I keep improving with each interview and project, and this repo reflects my progress. Feel free to explore, clone, or suggest improvements!
+This repository reflects that journey: moving from traditional backend development toward AI-native backend engineering, where Java services are not just endpoints, but intelligent agents that can collaborate, decide, and automate work.
